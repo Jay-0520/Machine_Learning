@@ -1,4 +1,4 @@
-Here we implement linear regression using Octave.
+Here we implement linear regression using Octave. The code here are from the exercise 1 of the coursera course Machine learning (stanford)
 
 Here is the list of files:
    computeCost.m - Function to compute the cost of linear regression
