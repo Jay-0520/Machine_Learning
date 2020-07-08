@@ -1,4 +1,4 @@
-Here we implement linear regression using Octave. 
+Here we implement neural network using Octave. 
 
 The code here are from the exercise-1 of the coursera course Machine learning (stanford) by Andrew Ng
 
