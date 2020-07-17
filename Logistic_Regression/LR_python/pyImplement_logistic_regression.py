@@ -217,46 +217,48 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     return d
 
 
-train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
+if __name__ == "__main__":
 
-### START CODE HERE ### (≈ 2 lines of code)
-train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0],-1).T
-test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0],-1).T
-### END CODE HERE ###
-
-train_set_x = train_set_x_flatten/255.
-test_set_x = test_set_x_flatten/255.
-
-d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 2000, learning_rate = 0.005, print_cost = True)
-
-# this would output
-# train accuracy: 99.043062201 %
-# test accuracy: 70.0 %
-
-
-# Plot learning curve (with costs)
-costs = np.squeeze(d['costs'])
-plt.plot(costs)
-plt.ylabel('cost')
-plt.xlabel('iterations (per hundreds)')
-plt.title("Learning rate =" + str(d["learning_rate"]))
-plt.show()
-
-# try different learning rates
-learning_rates = [0.01, 0.001, 0.0001]
-models = {}
-for i in learning_rates:
-    print ("learning rate is: " + str(i))
-    models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 1500, learning_rate = i, print_cost = False)
-    print ('\n' + "-------------------------------------------------------" + '\n')
-
-for i in learning_rates:
-    plt.plot(np.squeeze(models[str(i)]["costs"]), label= str(models[str(i)]["learning_rate"]))
-
-plt.ylabel('cost')
-plt.xlabel('iterations (hundreds)')
-
-legend = plt.legend(loc='upper center', shadow=True)
-frame = legend.get_frame()
-frame.set_facecolor('0.90')
-plt.show()
+    train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
+    
+    ### START CODE HERE ### (≈ 2 lines of code)
+    train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0],-1).T
+    test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0],-1).T
+    ### END CODE HERE ###
+    
+    train_set_x = train_set_x_flatten/255.
+    test_set_x = test_set_x_flatten/255.
+    
+    d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 2000, learning_rate = 0.005, print_cost = True)
+    
+    # this would output
+    # train accuracy: 99.043062201 %
+    # test accuracy: 70.0 %
+    
+    
+    # Plot learning curve (with costs)
+    costs = np.squeeze(d['costs'])
+    plt.plot(costs)
+    plt.ylabel('cost')
+    plt.xlabel('iterations (per hundreds)')
+    plt.title("Learning rate =" + str(d["learning_rate"]))
+    plt.show()
+    
+    # try different learning rates
+    learning_rates = [0.01, 0.001, 0.0001]
+    models = {}
+    for i in learning_rates:
+        print ("learning rate is: " + str(i))
+        models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 1500, learning_rate = i, print_cost = False)
+        print ('\n' + "-------------------------------------------------------" + '\n')
+    
+    for i in learning_rates:
+        plt.plot(np.squeeze(models[str(i)]["costs"]), label= str(models[str(i)]["learning_rate"]))
+    
+    plt.ylabel('cost')
+    plt.xlabel('iterations (hundreds)')
+    
+    legend = plt.legend(loc='upper center', shadow=True)
+    frame = legend.get_frame()
+    frame.set_facecolor('0.90')
+    plt.show()
